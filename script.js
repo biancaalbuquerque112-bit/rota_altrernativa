@@ -70,4 +70,35 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+const formContato = document.getElementById("formContato");
 
+if (formContato) {
+  formContato.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const dados = {
+      nome: document.getElementById("nome").value,
+      email: document.getElementById("email").value,
+      telefone: document.getElementById("telefone").value,
+      destino: document.getElementById("destino").value,
+      mensagem: document.getElementById("mensagem").value
+    };
+
+    const resposta = await fetch("http://localhost:3000/contato", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dados)
+    });
+
+    const resultado = await resposta.json();
+
+    if (resposta.ok) {
+      alert(resultado.mensagem);
+      formContato.reset();
+    } else {
+      alert(resultado.erro);
+    }
+  });
+}

@@ -424,6 +424,20 @@ body {
   height: 20px;
 }
 
+
+/* ── Linha com dois campos lado a lado ── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
   .auth-header {

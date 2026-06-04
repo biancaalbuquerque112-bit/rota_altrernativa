@@ -95,9 +95,11 @@ if (loginForm) {
 
       if (response.ok) {
         showMessage('Login realizado com sucesso!', 'success');
-        // Redirecionar após 1.5s
+        // Preserva dados do perfil já existente e atualiza email
+        const existing = JSON.parse(localStorage.getItem('rota_user') || '{}');
+        localStorage.setItem('rota_user', JSON.stringify({ ...existing, email }));
         setTimeout(() => {
-          window.location.href = '/dashboard';
+          window.location.href = 'perfil.html';
         }, 1500);
       } else {
         showMessage(data.erro || 'Erro ao fazer login', 'error');
@@ -119,10 +121,12 @@ if (signupForm) {
     const email = document.getElementById('emailCadastro').value.trim();
     const senha = document.getElementById('senhaCadastro').value;
     const confirmaSenha = document.getElementById('confirmaSenha').value;
+    const telefone = document.getElementById('telefoneCadastro').value.trim();
+    const localizacao = document.getElementById('localizacaoCadastro').value.trim();
     const terms = document.getElementById('terms').checked;
 
     // Validações
-    if (!nome || !email || !senha || !confirmaSenha) {
+    if (!nome || !email || !senha || !confirmaSenha || !telefone || !localizacao) {
       showMessage('Por favor, preencha todos os campos', 'error');
       return;
     }
@@ -158,6 +162,8 @@ if (signupForm) {
           nome,
           email,
           senha,
+          telefone,
+          localizacao,
         }),
       });
 
@@ -165,8 +171,10 @@ if (signupForm) {
 
       if (response.ok) {
         showMessage('Cadastro realizado com sucesso! Redirecionando...', 'success');
+        // Salva dados do usuário para usar no perfil
+        localStorage.setItem('rota_user', JSON.stringify({ nome, email, telefone, localizacao }));
         setTimeout(() => {
-          window.location.href = '/dashboard';
+          window.location.href = 'perfil.html';
         }, 2000);
       } else {
         showMessage(data.erro || 'Erro ao criar conta', 'error');
@@ -306,3 +314,15 @@ document.querySelectorAll('.auth-form input').forEach((input) => {
 // ═══ MENSAGEM DE BEM-VINDO ═══
 console.log('%cRota Alternativa', 'font-size: 24px; font-weight: bold; color: #7a1c1c;');
 console.log('Bem-vindo! Faça seu login ou cadastro para continuar.');
+
+// ── Máscara automática no telefone do cadastro ──
+const telCadastro = document.getElementById('telefoneCadastro');
+if (telCadastro) {
+  telCadastro.addEventListener('input', function () {
+    let v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d*)/, '($1) $2-$3');
+    else if (v.length > 2) v = v.replace(/^(\d{2})(\d*)/, '($1) $2');
+    this.value = v;
+  });
+}

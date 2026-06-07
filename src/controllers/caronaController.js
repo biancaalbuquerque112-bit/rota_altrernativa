@@ -3,26 +3,55 @@ const { Carona, Rota, Usuario } = require("../models");
 // ── GET /caronas ────────────────────────────────────────────────
 exports.listar = async (req, res) => {
   try {
+
     const caronas = await Carona.findAll({
       include: [
-        { model: Usuario, as: "motorista", attributes: ["id", "nome", "telefone"] },
-        { model: Rota, attributes: ["origem", "destino", "distancia"] },
+        {
+          model: Usuario,
+          as: "motorista",
+          attributes: ["id", "nome", "telefone"]
+        },
+        {
+          model: Rota,
+          attributes: ["origem", "destino", "distancia"]
+        }
       ],
-      order: [["horario", "ASC"]],
+      order: [["horario", "ASC"]]
     });
 
-    res.render("caronas/index", { caronas, usuario: req.usuario });
+    const rotas = await Rota.findAll({
+      where: {
+        usuarioId: req.usuario.id
+      }
+    });
+
+    res.render("caronas/index", {
+      caronas,
+      rotas,
+      usuario: req.usuario
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).send("Erro ao listar caronas.");
   }
 };
-
-// ── GET /caronas/criar ──────────────────────────────────────────
+// ── GET /caronas/criar ──────────────────────────
 exports.exibirCriar = async (req, res) => {
   try {
-    const rotas = await Rota.findAll({ where: { usuarioId: req.usuario.id } });
-    res.render("caronas/criar", { rotas, erro: null, usuario: req.usuario });
+
+    const rotas = await Rota.findAll({
+      where: {
+        usuarioId: req.usuario.id
+      }
+    });
+
+    res.render("caronas/criar", {
+      rotas,
+      erro: null,
+      usuario: req.usuario
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).send("Erro ao carregar formulário.");
@@ -72,6 +101,7 @@ exports.detalhe = async (req, res) => {
     res.status(500).send("Erro ao buscar carona.");
   }
 };
+
 
 // ── GET /caronas/:id/editar ─────────────────────────────────────
 exports.exibirEditar = async (req, res) => {

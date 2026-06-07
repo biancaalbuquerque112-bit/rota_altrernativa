@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Caronas - Rota Alternativa</title>
+</head>
+<body>
+
+<h1>Rota Alternativa</h1>
+
+<p>Bem-vinda, <%= usuario.nome %></p>
+
+<a href="/caronas/criar">Nova Carona</a>
+|
+<a href="/logout">Sair</a>
+
+<hr>
+
+<% if (caronas.length === 0) { %>
+    <p>Nenhuma carona cadastrada.</p>
+<% } else { %>
+
+<table border="1">
+    <tr>
+        <th>Motorista</th>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Horário</th>
+        <th>Vagas</th>
+        <th>Status</th>
+    </tr>
+
+    <% caronas.forEach(carona => { %>
+    <tr>
+        <td><%= carona.motorista?.nome || "-" %></td>
+        <td><%= carona.Rotum?.origem || carona.Rota?.origem || "-" %></td>
+        <td><%= carona.Rotum?.destino || carona.Rota?.destino || "-" %></td>
+        <td><%= carona.horario %></td>
+        <td><%= carona.vagas %></td>
+        <td><%= carona.status %></td>
+    </tr>
+    <% }) %>
+
+</table>
+
+<% } %>
+
+</body>
+</html>

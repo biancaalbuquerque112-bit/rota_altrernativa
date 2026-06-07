@@ -2,48 +2,165 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Caronas - Rota Alternativa</title>
+    <div class="auth-container">
+
+    <a href="/" class="btn-back">
+        ← Início
+    </a>
+
+</div>
+
+    <title>Minhas Caronas - Rota Alternativa</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
+<div id="cursor"></div>
+<div id="cursorRing"></div>
+
+<script src="/script.js"></script>
+
+
 <body>
 
-<h1>Rota Alternativa</h1>
+<%- include('../partials/navbar') %>
 
-<p>Bem-vinda, <%= usuario.nome %></p>
+<div class="dashboard">
 
-<a href="/caronas/criar">Nova Carona</a>
-|
-<a href="/logout">Sair</a>
+    <div class="dashboard-header">
 
-<hr>
+        <div>
+            <span class="section-label">
+                PAINEL
+            </span>
 
-<% if (caronas.length === 0) { %>
-    <p>Nenhuma carona cadastrada.</p>
-<% } else { %>
+            <h1>Minhas Caronas</h1>
 
-<table border="1">
-    <tr>
-        <th>Motorista</th>
-        <th>Origem</th>
-        <th>Destino</th>
-        <th>Horário</th>
-        <th>Vagas</th>
-        <th>Status</th>
-    </tr>
+            <p>
+                Bem-vinda, <%= usuario.nome %>
+            </p>
+        </div>
 
-    <% caronas.forEach(carona => { %>
-    <tr>
-        <td><%= carona.motorista?.nome || "-" %></td>
-        <td><%= carona.Rotum?.origem || carona.Rota?.origem || "-" %></td>
-        <td><%= carona.Rotum?.destino || carona.Rota?.destino || "-" %></td>
-        <td><%= carona.horario %></td>
-        <td><%= carona.vagas %></td>
-        <td><%= carona.status %></td>
-    </tr>
-    <% }) %>
+        <div class="dashboard-actions">
 
-</table>
+            <a href="/caronas/criar" class="btn-primary">
+                Nova Carona
+            </a>
 
-<% } %>
+            <a href="/logout" class="btn-secondary">
+                Sair
+            </a>
+
+        </div>
+
+    </div>
+
+    <% if (caronas.length === 0) { %>
+
+        <div class="empty-card">
+
+            <h3>Nenhuma carona cadastrada</h3>
+
+            <p>
+                Crie sua primeira carona para começar.
+            </p>
+
+        </div>
+
+    <% } else { %>
+
+    <div class="table-card">
+
+        <table class="dashboard-table">
+
+            <thead>
+
+                <tr>
+                    <th>Motorista</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Horário</th>
+                    <th>Vagas</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <% caronas.forEach(carona => { %>
+
+                <tr>
+
+                    <td>
+                        <%= carona.motorista?.nome || "-" %>
+                    </td>
+
+                    <td>
+                        <%= carona.Rotum?.origem || carona.Rota?.origem || "-" %>
+                    </td>
+
+                    <td>
+                        <%= carona.Rotum?.destino || carona.Rota?.destino || "-" %>
+                    </td>
+
+                    <td>
+                        <%= new Date(carona.horario).toLocaleString('pt-BR') %>
+                    </td>
+
+                    <td>
+                        <%= carona.vagas %>
+                    </td>
+
+                    <td>
+                        <span class="status-badge">
+                            <%= carona.status %>
+                        </span>
+                    </td>
+
+                </tr>
+
+                <% }) %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <% } %>
+
+</div>
+<div class="table-card">
+
+    <h2>Rotas Disponíveis</h2>
+
+    <div class="cards-grid">
+
+        <% rotas.forEach(rota => { %>
+
+            <div class="rota-card">
+
+                <h3>
+                    <%= rota.origem %> → <%= rota.destino %>
+                </h3>
+
+                <p>
+                    Distância:
+                    <%= rota.distancia || "Não informada" %> km
+                </p>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
 
 </body>
 </html>

@@ -6,7 +6,6 @@ const { Usuario } = require("../models");
 exports.exibirLogin = (req, res) => {
   res.render("login", { erro: null });
 };
-
 // ── POST /login ─────────────────────────────────────────────────
 exports.login = async (req, res) => {
   try {

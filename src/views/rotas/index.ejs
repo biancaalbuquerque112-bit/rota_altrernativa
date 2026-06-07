@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Rotas</title>
+</head>
+<body>
+
+<h1>Minhas Rotas</h1>
+
+<p>Bem-vinda, <%= usuario.nome %></p>
+
+<a href="/rotas/criar">Nova Rota</a> |
+<a href="/caronas">Ver Caronas</a> |
+<a href="/logout">Sair</a>
+
+<hr>
+
+<% if (rotas.length === 0) { %>
+    <p>Nenhuma rota cadastrada.</p>
+<% } else { %>
+
+<table border="1">
+    <tr>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Distância</th>
+        <th>Ações</th>
+    </tr>
+
+    <% rotas.forEach(rota => { %>
+    <tr>
+        <td><%= rota.origem %></td>
+        <td><%= rota.destino %></td>
+        <td><%= rota.distancia || "-" %> km</td>
+        <td>
+            <a href="/rotas/<%= rota.id %>/editar">Editar</a>
+
+            <form action="/rotas/<%= rota.id %>/deletar"
+                  method="POST"
+                  style="display:inline;">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    <% }) %>
+
+</table>
+
+<% } %>
+
+</body>
+</html>

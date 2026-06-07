@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Editar Carona</title>
+</head>
+<body>
+
+<h1>Editar Carona</h1>
+
+<form action="/caronas/<%= carona.id %>/editar" method="POST">
+
+    <label>Rota:</label>
+    <select name="rotaId">
+
+        <% rotas.forEach(rota => { %>
+
+        <option
+            value="<%= rota.id %>"
+            <%= rota.id === carona.rotaId ? "selected" : "" %>>
+            <%= rota.origem %> → <%= rota.destino %>
+        </option>
+
+        <% }) %>
+
+    </select>
+
+    <br><br>
+
+    <label>Vagas:</label>
+    <input
+        type="number"
+        name="vagas"
+        value="<%= carona.vagas %>"
+        required>
+
+    <br><br>
+
+    <label>Horário:</label>
+    <input
+        type="datetime-local"
+        name="horario"
+        value="<%= carona.horario %>">
+
+    <br><br>
+
+    <label>Status:</label>
+
+    <select name="status">
+        <option value="ativa">Ativa</option>
+        <option value="encerrada">Encerrada</option>
+        <option value="cancelada">Cancelada</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Atualizar
+    </button>
+
+</form>
+
+<br>
+
+<a href="/caronas">Voltar</a>
+
+</body>
+</html>

@@ -2,52 +2,116 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Minhas Rotas</title>
+    <title>Minhas Rotas - Rota Alternativa</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<h1>Minhas Rotas</h1>
+<div id="cursor"></div>
+<div id="cursorRing"></div>
 
-<p>Bem-vinda, <%= usuario.nome %></p>
+<%- include('../partials/navbar') %>
 
-<a href="/rotas/criar">Nova Rota</a> |
-<a href="/caronas">Ver Caronas</a> |
-<a href="/logout">Sair</a>
+<div class="auth-container">
 
-<hr>
+    <a href="/" class="btn-back">
+        ← Início
+    </a>
 
-<% if (rotas.length === 0) { %>
-    <p>Nenhuma rota cadastrada.</p>
-<% } else { %>
+</div>
 
-<table border="1">
-    <tr>
-        <th>Origem</th>
-        <th>Destino</th>
-        <th>Distância</th>
-        <th>Ações</th>
-    </tr>
+<div class="dashboard">
 
-    <% rotas.forEach(rota => { %>
-    <tr>
-        <td><%= rota.origem %></td>
-        <td><%= rota.destino %></td>
-        <td><%= rota.distancia || "-" %> km</td>
-        <td>
-            <a href="/rotas/<%= rota.id %>/editar">Editar</a>
+    <div class="dashboard-header">
 
-            <form action="/rotas/<%= rota.id %>/deletar"
-                  method="POST"
-                  style="display:inline;">
-                <button type="submit">Excluir</button>
-            </form>
-        </td>
-    </tr>
-    <% }) %>
+    <div>
+        <span class="section-label">PAINEL</span>
+        <h1>Minhas Rotas</h1>
+        <p>Gerencie suas rotas cadastradas</p>
+    </div>
 
-</table>
+    <div class="dashboard-actions">
 
-<% } %>
+        <a href="/caronas" class="btn-secondary">
+            ← Voltar ao Painel
+        </a>
+
+        <a href="/rotas/criar" class="btn-primary">
+            Nova Rota
+        </a>
+
+    </div>
+
+</div>
+
+    <% if(rotas.length === 0) { %>
+
+        <div class="empty-card">
+
+            <h3>Nenhuma rota cadastrada</h3>
+
+            <p>
+                Clique em "Nova Rota" para criar sua primeira rota.
+            </p>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="cards-grid">
+
+            <% rotas.forEach(rota => { %>
+
+                <div class="rota-card">
+
+                    <div class="rota-header">
+
+                        <h3>
+                            <%= rota.origem %> → <%= rota.destino %>
+                        </h3>
+
+                    </div>
+
+                    <p class="rota-info">
+                        📍 Distância:
+                        <strong>
+                            <%= rota.distancia || "Não informada" %> km
+                        </strong>
+                    </p>
+
+                    <div class="rota-actions">
+
+                        <a href="/rotas/<%= rota.id %>/editar" class="btn-primary">
+                            Editar
+                        </a>
+
+                        <form action="/rotas/<%= rota.id %>/deletar" method="POST">
+
+                            <button type="submit" class="btn-danger">
+                                Excluir
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>
+
+<script src="/script.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Detalhes da Carona</title>
+</head>
+<body>
+
+<h1>Detalhes da Carona</h1>
+
+<p>
+    <strong>Motorista:</strong>
+    <%= carona.motorista?.nome %>
+</p>
+
+<p>
+    <strong>Telefone:</strong>
+    <%= carona.motorista?.telefone %>
+</p>
+
+<p>
+    <strong>Origem:</strong>
+    <%= carona.Rotum?.origem || carona.Rota?.origem %>
+</p>
+
+<p>
+    <strong>Destino:</strong>
+    <%= carona.Rotum?.destino || carona.Rota?.destino %>
+</p>
+
+<p>
+    <strong>Distância:</strong>
+    <%= carona.Rotum?.distancia || carona.Rota?.distancia %> km
+</p>
+
+<p>
+    <strong>Vagas:</strong>
+    <%= carona.vagas %>
+</p>
+
+<p>
+    <strong>Status:</strong>
+    <%= carona.status %>
+</p>
+
+<a href="/caronas">Voltar</a>
+
+</body>
+</html>

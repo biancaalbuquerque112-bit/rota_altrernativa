@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil | Rota Alternativa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- HEADER -->
+  <header class="profile-header">
+    <a href="index.html" class="header-logo">
+      <img src="images/image.png" alt="Rota Alternativa" width="32" height="32">
+      Rota Alternativa
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Início</a>
+      <a href="#" class="nav-active">Meu Perfil</a>
+      <a href="#">Trajetos</a>
+      <a href="#">Mensagens</a>
+    </nav>
+    <div class="header-right">
+      <button class="btn-save-header hidden" id="btnSaveHeader">Salvar alterações</button>
+      <a href="index.html" class="btn-back-header">← Início</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══ CAPA / HERO ══ -->
+    <section class="cover-section">
+      <div class="cover-dots"></div>
+
+      <div class="cover-inner">
+
+        <!-- Avatar -->
+        <div class="avatar-area">
+          <div class="avatar-wrap" id="avatarWrap">
+            <div class="avatar-placeholder" id="avatarPlaceholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <img id="avatarImg" src="" alt="Foto de perfil" class="avatar-img hidden">
+            <button class="avatar-edit-btn" id="avatarEditBtn" title="Alterar foto">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+          </div>
+          <input type="file" id="avatarInput" accept="image/*" hidden>
+
+          <!-- Status online/offline -->
+          <button class="status-btn" id="statusBtn">
+            <span class="status-dot online" id="statusDot"></span>
+            <span id="statusLabel">Online</span>
+          </button>
+        </div>
+
+        <!-- Identidade -->
+        <div class="identity-area">
+
+          <!-- Nome (vem do cadastro, editável) -->
+          <div class="name-row">
+            <h1 class="profile-name" id="profileName" data-placeholder="Seu nome completo"></h1>
+            <button class="inline-edit-btn" data-target="profileName" title="Editar nome">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <!-- Selos de verificação -->
+            <div class="badges-row" id="badgesRow"></div>
+          </div>
+
+          <!-- Localização -->
+          <div class="location-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span class="editable-field" id="profileLocation" data-placeholder="Bairro, Cidade – UF" data-field="location"></span>
+            <button class="inline-edit-btn" data-target="profileLocation" title="Editar localização">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+
+          <!-- Estrelas (leitura apenas — geradas por avaliações) -->
+          <div class="rating-row">
+            <div class="stars-display">
+              <svg class="star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="rating-num">—</span>
+            <span class="rating-count">(sem avaliações ainda)</span>
+          </div>
+
+          <!-- Instagram -->
+          <div class="instagram-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            <span class="editable-field ig-field" id="profileInstagram" data-placeholder="@seu_instagram" data-field="instagram"></span>
+            <button class="inline-edit-btn" data-target="profileInstagram" title="Editar Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Compatibilidade de rota (aparece quando houver outro usuário) -->
+        <div class="compat-card">
+          <div class="compat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="compat-info">
+            <span class="compat-label">Compatibilidade de rota</span>
+            <div class="compat-bar-wrap">
+              <div class="compat-bar"><div class="compat-fill" id="compatFill" style="width:0%"></div></div>
+              <span class="compat-pct" id="compatPct">—</span>
+            </div>
+            <span class="compat-sub">Adicione trajetos para calcular</span>
+          </div>
+        </div>
+
+      </div><!-- /cover-inner -->
+    </section>
+
+    <!-- ══ CONTEÚDO ══ -->
+    <div class="profile-body">
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="sidebar">
+
+        <!-- Bio -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Sobre mim</h3>
+            <button class="inline-edit-btn" data-target="bioText" title="Editar bio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+          <p class="bio-text" id="bioText" data-placeholder="Conte um pouco sobre você, seu estilo de viagem e preferências..." data-field="bio"></p>
+        </div>
+
+        <!-- Contato -->
+        <div class="card">
+          <div class="card-head"><h3>Contato</h3></div>
+          <ul class="contact-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span id="contactEmail" class="contact-val">—</span>
+              <span class="verified-tag" id="emailTag"></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.07a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="editable-field" id="contactPhone" data-placeholder="(00) 00000-0000" data-field="phone"></span>
+              <button class="inline-edit-btn small" data-target="contactPhone" title="Editar telefone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Horários disponíveis -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Horários Disponíveis</h3>
+            <button class="inline-edit-btn" id="editScheduleBtn" title="Editar horários">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+          <!-- Visualização dos horários -->
+          <div class="schedule-view" id="scheduleView">
+            <p class="empty-hint">Clique no lápis para adicionar seus horários disponíveis.</p>
+          </div>
+          <!-- Edição dos horários (oculta inicialmente) -->
+          <div class="schedule-edit hidden" id="scheduleEdit">
+            <div class="sched-days">
+              <label class="sched-day-lbl"><input type="checkbox" value="Seg"> Seg</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Ter"> Ter</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Qua"> Qua</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Qui"> Qui</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Sex"> Sex</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Sáb"> Sáb</label>
+              <label class="sched-day-lbl"><input type="checkbox" value="Dom"> Dom</label>
+            </div>
+            <div class="sched-period">
+              <label><input type="checkbox" value="manha"> Manhã (6–12h)</label>
+              <label><input type="checkbox" value="tarde"> Tarde (12–18h)</label>
+              <label><input type="checkbox" value="noite"> Noite (18–23h)</label>
+            </div>
+            <div class="sched-actions">
+              <button type="button" class="btn-sm-save" id="saveScheduleBtn">Salvar</button>
+              <button type="button" class="btn-sm-cancel" id="cancelScheduleBtn">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trajetos frequentes -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Trajetos Frequentes</h3>
+            <button class="inline-edit-btn" id="addRouteBtn" title="Adicionar trajeto">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <ul class="routes-list" id="routesList">
+            <li class="empty-hint">Clique no + para adicionar seus trajetos.</li>
+          </ul>
+          <!-- Formulário de novo trajeto (oculto) -->
+          <div class="route-form hidden" id="routeForm">
+            <input type="text" id="routeFrom" placeholder="Origem (ex: Pajuçara)">
+            <input type="text" id="routeTo"   placeholder="Destino (ex: UFAL)">
+            <select id="routeFreq">
+              <option value="">Frequência</option>
+              <option value="1×/sem">1×/semana</option>
+              <option value="2×/sem">2×/semana</option>
+              <option value="3×/sem">3×/semana</option>
+              <option value="4×/sem">4×/semana</option>
+              <option value="5×/sem">5×/semana</option>
+              <option value="Diário">Diário</option>
+            </select>
+            <div class="route-form-btns">
+              <button type="button" class="btn-sm-save"   id="saveRouteBtn">Adicionar</button>
+              <button type="button" class="btn-sm-cancel" id="cancelRouteBtn">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ── CONTEÚDO PRINCIPAL ── -->
+      <section class="main-content">
+
+        <!-- Estatísticas -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="stat-val">0</span>
+            <span class="stat-lbl">Trajetos realizados</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="stat-val">0</span>
+            <span class="stat-lbl">Trajetos oferecidos</span>
+          </div>
+          <div class="stat-card economy">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <span class="stat-val">R$ 0</span>
+            <span class="stat-lbl">Economia estimada</span>
+          </div>
+          <div class="stat-card eco">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22 16 8M17.5 2.5l4 4-1.5 1.5-4-4 1.5-1.5z"/><circle cx="19" cy="5" r="2"/></svg>
+            </div>
+            <span class="stat-val">0 kg</span>
+            <span class="stat-lbl">CO₂ evitado</span>
+          </div>
+        </div>
+
+        <!-- Selos / Conquistas -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Selos & Conquistas</h3>
+            <span class="badge-counter" id="badgeCounter">0 conquistados</span>
+          </div>
+          <div class="badges-grid" id="badgesGrid">
+            <div class="achievement locked" title="Faça seu primeiro trajeto">
+              <div class="ach-icon">🚗</div>
+              <span class="ach-name">Primeiro Passo</span>
+            </div>
+            <div class="achievement locked" title="Complete 100 trajetos">
+              <div class="ach-icon">🏆</div>
+              <span class="ach-name">Centenário</span>
+            </div>
+            <div class="achievement locked" title="Alcance avaliação 4.5+">
+              <div class="ach-icon">⭐</div>
+              <span class="ach-name">Top Rated</span>
+            </div>
+            <div class="achievement" id="achVerified" title="E-mail verificado">
+              <div class="ach-icon">✅</div>
+              <span class="ach-name">Verificado</span>
+            </div>
+            <div class="achievement locked" title="Evite 100kg de CO₂">
+              <div class="ach-icon">🌿</div>
+              <span class="ach-name">Eco Herói</span>
+            </div>
+            <div class="achievement locked" title="Seja membro por 1 ano">
+              <div class="ach-icon">🎂</div>
+              <span class="ach-name">Veterano</span>
+            </div>
+            <div class="achievement locked" title="Faça 500 trajetos">
+              <div class="ach-icon">🔒</div>
+              <span class="ach-name">Lenda</span>
+            </div>
+            <div class="achievement locked" title="Evite 500kg de CO₂">
+              <div class="ach-icon">🔒</div>
+              <span class="ach-name">Super Eco</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avaliações -->
+        <div class="card">
+          <div class="card-head"><h3>Avaliações</h3></div>
+          <div class="reviews-empty" id="reviewsEmpty">
+            <div class="empty-icon">💬</div>
+            <p>Nenhuma avaliação ainda.</p>
+            <span>As avaliações dos outros usuários aparecerão aqui após seus primeiros trajetos.</span>
+          </div>
+          <div id="reviewsList" class="reviews-list hidden"></div>
+        </div>
+
+      </section>
+    </div><!-- /profile-body -->
+
+  </main>
+
+  <!-- MODAL: edição de campo de texto -->
+  <div class="modal-overlay hidden" id="editModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 id="modalTitle">Editar</h2>
+      <div id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" id="modalCancel">Cancelar</button>
+        <button class="btn-modal-save"   id="modalSave">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="perfil.js"></script>
+</body>
+</html>

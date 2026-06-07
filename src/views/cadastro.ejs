@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro - Rota Alternativa</title>
+</head>
+<body>
+
+<h1>Cadastro</h1>
+
+<% if (erro) { %>
+<p style="color:red"><%= erro %></p>
+<% } %>
+
+<form action="/cadastro" method="POST">
+
+    <input type="text" name="nome" placeholder="Nome" required>
+    <br><br>
+
+    <input type="email" name="email" placeholder="E-mail" required>
+    <br><br>
+
+    <input type="password" name="senha" placeholder="Senha" required>
+    <br><br>
+
+    <input type="text" name="telefone" placeholder="Telefone">
+    <br><br>
+
+    <select name="tipo">
+        <option value="passageiro">Passageiro</option>
+        <option value="motorista">Motorista</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Cadastrar</button>
+
+</form>
+
+<p>
+    <a href="/login">Voltar para Login</a>
+</p>
+
+</body>
+</html>

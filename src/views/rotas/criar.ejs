@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nova Rota</title>
+</head>
+<body>
+
+<h1>Cadastrar Rota</h1>
+
+<% if (erro) { %>
+<p style="color:red"><%= erro %></p>
+<% } %>
+
+<form action="/rotas" method="POST">
+
+    <input
+        type="text"
+        name="origem"
+        placeholder="Origem"
+        required>
+
+    <br><br>
+
+    <input
+        type="text"
+        name="destino"
+        placeholder="Destino"
+        required>
+
+    <br><br>
+
+    <input
+        type="number"
+        step="0.1"
+        name="distancia"
+        placeholder="Distância em KM">
+
+    <br><br>
+
+    <button type="submit">
+        Salvar Rota
+    </button>
+
+</form>
+
+<br>
+
+<a href="/rotas">
+    Voltar
+</a>
+
+</body>
+</html>

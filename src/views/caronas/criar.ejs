@@ -2,19 +2,41 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Nova Carona</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="auth-container">
+
+    <a href="/" class="btn-back">
+        ← Início
+    </a>
+
+</div>
+<title>Nova Carona - Rota Alternativa</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 </head>
-<body>
 
-<h1>Nova Carona</h1>
+<body class="auth-page">
 
-<% if (erro) { %>
-<p style="color:red"><%= erro %></p>
-<% } %>
+<div class="auth-card">
 
-<form action="/caronas" method="POST">
+    <h1>Nova Carona</h1>
 
-    <label>Rota:</label>
+    <% if (erro) { %>
+        <div class="error-message">
+            <%= erro %>
+        </div>
+    <% } %>
+
+    <form action="/caronas" method="POST">
+
+     <label>Rota</label>
+
+<div class="rota-group">
+
     <select name="rotaId" required>
         <% rotas.forEach(rota => { %>
             <option value="<%= rota.id %>">
@@ -23,25 +45,48 @@
         <% }) %>
     </select>
 
-    <br><br>
+    <a href="/rotas/criar" class="btn-add-route">
+        + Nova Rota
+    </a>
 
-    <label>Vagas:</label>
-    <input type="number" name="vagas" min="1" required>
+</div>
+        <label>Vagas</label>
 
-    <br><br>
+        <input
+            type="number"
+            name="vagas"
+            min="1"
+            placeholder="Quantidade de vagas"
+            required
+        >
 
-    <label>Horário:</label>
-    <input type="datetime-local" name="horario" required>
+        <label>Horário</label>
 
-    <br><br>
+        <input
+            type="datetime-local"
+            name="horario"
+            required
+        >
 
-    <button type="submit">Criar Carona</button>
+        <button
+            type="submit"
+            class="btn-primary"
+        >
+            Criar Carona
+        </button>
 
-</form>
+    </form>
 
-<br>
+    <a href="/caronas" class="auth-link">
+        ← Voltar para Caronas
+    </a>
 
-<a href="/caronas">Voltar</a>
+</div>
+
+<div id="cursor"></div>
+<div id="cursorRing"></div>
+
+<script src="/script.js"></script>
 
 </body>
 </html>

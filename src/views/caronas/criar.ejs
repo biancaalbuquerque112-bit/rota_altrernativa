@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nova Carona</title>
+</head>
+<body>
+
+<h1>Nova Carona</h1>
+
+<% if (erro) { %>
+<p style="color:red"><%= erro %></p>
+<% } %>
+
+<form action="/caronas" method="POST">
+
+    <label>Rota:</label>
+    <select name="rotaId" required>
+        <% rotas.forEach(rota => { %>
+            <option value="<%= rota.id %>">
+                <%= rota.origem %> → <%= rota.destino %>
+            </option>
+        <% }) %>
+    </select>
+
+    <br><br>
+
+    <label>Vagas:</label>
+    <input type="number" name="vagas" min="1" required>
+
+    <br><br>
+
+    <label>Horário:</label>
+    <input type="datetime-local" name="horario" required>
+
+    <br><br>
+
+    <button type="submit">Criar Carona</button>
+
+</form>
+
+<br>
+
+<a href="/caronas">Voltar</a>
+
+</body>
+</html>

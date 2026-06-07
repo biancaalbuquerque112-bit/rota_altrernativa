@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Login - Rota Alternativa</title>
+</head>
+
+<body class="auth-page">
+
+<div class="auth-card">
+
+    <h1 class="auth-title">Entrar</h1>
+
+    <% if (erro) { %>
+        <p style="color:red; margin-bottom:15px;">
+            <%= erro %>
+        </p>
+    <% } %>
+
+    <form class="auth-form" action="/login" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            required
+        >
+
+        <input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            required
+        >
+
+        <button class="auth-btn" type="submit">
+            Entrar
+        </button>
+
+    </form>
+
+    <a href="/cadastro" class="auth-link">
+        Criar conta
+    </a>
+
+</div>
+
+</body>
+</html>

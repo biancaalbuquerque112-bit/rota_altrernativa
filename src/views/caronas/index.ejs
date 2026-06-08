@@ -86,6 +86,8 @@
                     <th>Horário</th>
                     <th>Vagas</th>
                     <th>Status</th>
+                    <th>Reservar</th>
+
                 </tr>
 
             </thead>
@@ -120,6 +122,23 @@
                         <span class="status-badge">
                             <%= carona.status %>
                         </span>
+                    </td>
+                    <td>
+                        <% if(carona.motorista?.telefone) { %>
+
+                            <a
+                                href="https://wa.me/55<%= carona.motorista.telefone.replace(/\D/g,'') %>?text=Olá! Tenho interesse na carona de <%= carona.Rota?.origem %> para <%= carona.Rota?.destino %>."
+                                target="_blank"
+                                class="btn-primary"
+                            >
+                                Reservar
+                            </a>
+
+                        <% } else { %>
+
+                            <span>Sem contato</span>
+
+                        <% } %>
                     </td>
 
                 </tr>

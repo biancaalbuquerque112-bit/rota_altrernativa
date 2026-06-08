@@ -1,5 +1,4 @@
 // ── Custom Cursor ──
-
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 
@@ -33,32 +32,24 @@ if (cursor && ring) {
   document.querySelectorAll('a,button').forEach(el => {
 
     el.addEventListener('mouseenter', () => {
-
       cursor.style.width = '16px';
       cursor.style.height = '16px';
 
       ring.style.width = '56px';
       ring.style.height = '56px';
-
     });
 
     el.addEventListener('mouseleave', () => {
-
       cursor.style.width = '10px';
       cursor.style.height = '10px';
 
       ring.style.width = '36px';
       ring.style.height = '36px';
-
     });
 
   });
 
 }
-document.querySelectorAll('a,button').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='56px'; ring.style.height='56px'; });
-  el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
-});
 
 // ── Scroll Progress ──
 const progressBar = document.getElementById('progress');
@@ -73,7 +64,6 @@ if (progressBar) {
       * 100 + '%';
 
   });
-
 }
 
 // ── Hero Compass: reacts to mouse movement ──
@@ -106,11 +96,11 @@ const scrollStory = document.getElementById('scrollStory');
 
 if (scrollStory) {
 
-  const panels = [
-    document.getElementById('panel0'),
-    document.getElementById('panel1'),
-    document.getElementById('panel2')
-  ];
+const panels = [
+  document.getElementById('panel0'),
+  document.getElementById('panel1'),
+  document.getElementById('panel2')
+].filter(Boolean);
 
   const dots = document.querySelectorAll('.story-dot');
   const bgText = document.getElementById('scrollBgText');

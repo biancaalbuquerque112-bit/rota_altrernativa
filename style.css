@@ -1033,3 +1033,202 @@ body{
     text-decoration:none;
     font-weight:600;
 }
+/* RESPONSIVIDADE CELULAR */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header,
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  nav a {
+    font-size: 16px;
+  }
+
+  /* Banner */
+  .hero,
+  .banner {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .hero h1,
+  .banner h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero p,
+  .banner p {
+    font-size: 1rem;
+  }
+
+  /* Botões */
+  .hero-buttons,
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Formulário */
+  .contact-form,
+  form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Títulos */
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Remove posições absolutas */
+  .hero-image,
+  .decoracao,
+  .shape {
+    position: static !important;
+  }
+}/* ==========================
+   MOBILE
+========================== */
+@media (max-width: 768px) {
+
+  body{
+    overflow-x:hidden;
+    cursor:auto;
+  }
+
+  #cursor,
+  #cursorRing{
+    display:none;
+  }
+
+  nav{
+    position:relative;
+    height:auto;
+    flex-direction:column;
+    padding:15px;
+    gap:15px;
+  }
+
+  .nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+  }
+
+  .nav-actions{
+    width:100%;
+    justify-content:center;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding:20px;
+    text-align:center;
+  }
+
+  .compass-scene{
+    height:auto;
+    order:1;
+  }
+
+  .compass-wrapper{
+    width:220px;
+    height:220px;
+  }
+
+  .hero-text{
+    padding:20px;
+    order:2;
+  }
+
+  .hero-headline{
+    font-size:2.2rem;
+  }
+
+  .hero-sub{
+    max-width:100%;
+  }
+
+  .hero-ctas{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .cta-main,
+  .cta-secondary{
+    width:100%;
+    justify-content:center;
+  }
+
+  .features-header,
+  .routes-section{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .features-grid{
+    grid-template-columns:1fr;
+  }
+
+  .story-dots{
+    display:none;
+  }
+
+  .scroll-panel{
+    flex-direction:column;
+    padding:20px;
+  }
+
+  .contact-form,
+  form{
+    width:100%;
+    padding:20px;
+  }
+
+  input,
+  textarea,
+  select{
+    width:100%;
+    max-width:100%;
+  }
+
+  .phone-frame{
+    width:220px;
+  }
+}

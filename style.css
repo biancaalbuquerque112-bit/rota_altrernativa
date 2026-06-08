@@ -739,6 +739,10 @@ body{
     overflow-x: hidden;
   }
 }
+.phone-mockup {
+   position: absolute;
+   right: -200px;
+}
 
   .nav-links{
     width: 100%;

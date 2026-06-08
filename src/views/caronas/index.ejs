@@ -125,11 +125,19 @@
                     </td>
                     <td>
                         <% if(carona.motorista?.telefone) { %>
+                        
+                        <%
+                            const origem = carona.Rotum?.origem || carona.Rota?.origem || "";
+                            const destino = carona.Rotum?.destino || carona.Rota?.destino || "";
+                            const mensagem = encodeURIComponent(
+                                `Olá! Tenho interesse na carona de ${origem} para ${destino}.`
+                            );
+                            %>
 
                             <a
-                                href="https://wa.me/55<%= carona.motorista.telefone.replace(/\D/g,'') %>?text=Olá! Tenho interesse na carona de <%= carona.Rota?.origem %> para <%= carona.Rota?.destino %>."
-                                target="_blank"
-                                class="btn-primary"
+                            href="https://wa.me/55<%= carona.motorista.telefone.replace(/\D/g,'') %>?text=Olá! Tenho interesse na carona de <%= carona.Rotum?.origem || carona.Rota?.origem || '' %> para <%= carona.Rotum?.destino || carona.Rota?.destino || '' %>."
+                            target="_blank"
+                            class="btn-primary"
                             >
                                 Reservar
                             </a>

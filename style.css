@@ -701,13 +701,44 @@ body{
 /* =========================
    RESPONSIVO CELULAR
 ========================= */
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-  nav{
-    padding: 15px;
-    flex-wrap: wrap;
-    gap: 15px;
+  .hero,
+  .banner,
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
   }
+
+  .hero-text,
+  .hero-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-image img,
+  .phone-mockup {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    margin: 20px auto 0;
+    display: block;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
 
   .nav-links{
     width: 100%;
@@ -760,7 +791,7 @@ body{
   .cursor-ring{
     display:none;
   }
-}
+
 .dashboard{
     max-width:1200px;
     margin:0 auto;
